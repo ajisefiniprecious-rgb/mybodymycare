@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with My Body, My Care - contact us for partnerships, questions, or to get involved.">
+  <title>Contact Us | My Body, My Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand"><span class="brand-icon">&#9829;</span> My Body, My Care</a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="mission.html">Mission</a>
+        <a href="impact.html">Impact</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="resources.html">Resources</a>
+        <a href="news.html">News</a>
+        <a href="team.html">Team</a>
+        <a href="partners.html">Partners</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="nav-cta">Contact Us</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="menu-overlay" id="menuOverlay"></div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>Have a question, want to partner, or need more information? We'd love to hear from you.</p>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator">/</span>
+        <span class="current">Contact</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="fade-up">
+          <span class="section-badge">Get in Touch</span>
+          <h2>We're Here to Help</h2>
+          <p style="margin-bottom:2rem;">Whether you're a school, organization, healthcare provider, supporter, or simply someone who wants to learn more, we welcome your message.</p>
+
+          <div class="contact-info-card">
+            <div class="contact-info-icon">&#128205;</div>
+            <div>
+              <h4>Location</h4>
+              <p>Ile-Ife, Osun State, Nigeria</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-info-icon">&#128231;</div>
+            <div>
+              <h4>Email</h4>
+              <p>info@mybodymycare.org</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-info-icon">&#128222;</div>
+            <div>
+              <h4>Phone</h4>
+              <p>+234 (0) XXX XXX XXXX</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-info-icon">&#128172;</div>
+            <div>
+              <h4>WhatsApp</h4>
+              <p>+234 (0) XXX XXX XXXX</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-info-icon">&#127760;</div>
+            <div>
+              <h4>Social Media</h4>
+              <p>Follow us on Facebook, Instagram, and Twitter @mybodymycare</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="fade-up">
+          <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+            <h3 style="margin-bottom:0.3rem;">Send Us a Message</h3>
+            <p style="font-size:0.9rem;color:var(--gray-500);margin-bottom:1.5rem;">Fill out the form below and we'll get back to you as soon as possible.</p>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="Enter your email address">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+            </div>
+
+            <div class="form-group">
+              <label for="organization">Organization (if applicable)</label>
+              <input type="text" id="organization" name="organization" placeholder="School, NGO, company, etc.">
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <select id="subject" name="subject" required>
+                <option value="" disabled selected>Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="partnership">Partnership Opportunity</option>
+                <option value="school">School Visit Request</option>
+                <option value="volunteer">Volunteering</option>
+                <option value="donation">Donation</option>
+                <option value="media">Media Inquiry</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Your Message *</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Send Message &#8594;</button>
+          </form>
+          <div id="formSuccess" style="display:none;padding:2rem;text-align:center;background:#E8F5E9;border-radius:var(--radius-md);margin-top:1rem;">
+            <div style="font-size:3rem;margin-bottom:1rem;">&#10003;</div>
+            <h3 style="color:var(--success);margin-bottom:0.5rem;">Message Sent!</h3>
+            <p style="color:var(--gray-700);">Thank you for reaching out. We will get back to you as soon as possible.</p>
+            <button class="btn btn-outline mt-2" onclick="resetForm()">Send Another Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand"><span class="brand-icon">&#9829;</span> My Body, My Care</div>
+          <p>A youth-led initiative providing menstrual health education and intimate hygiene awareness to adolescent girls in rural Ile-Ife, Nigeria.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">&#102;</a>
+            <a href="#" aria-label="Twitter">&#120143;</a>
+            <a href="#" aria-label="Instagram">&#9679;</a>
+            <a href="#" aria-label="WhatsApp">&#9742;</a>
+          </div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="mission.html">Our Mission</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="news.html">News & Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get Involved</h4>
+          <ul class="footer-links">
+            <li><a href="partners.html">Partner With Us</a></li>
+            <li><a href="team.html">Meet the Team</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Stay Updated</h4>
+          <p>Subscribe to our newsletter for the latest news and updates.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault();alert('Thank you for subscribing!');">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 My Body, My Care. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
+  <script src="js/main.js"></script>
+</body>
+</html>

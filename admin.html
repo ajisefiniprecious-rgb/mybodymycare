@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Dashboard | My Body, My Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--gray-50); }
+    .admin-layout { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
+    .admin-sidebar {
+      background: var(--gray-900); color: var(--white); padding: 2rem 0;
+      position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    }
+    .admin-sidebar-brand { padding: 0 1.5rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .admin-sidebar-brand h2 { font-size: 1rem; color: var(--white); margin-bottom: 0.3rem; }
+    .admin-sidebar-brand p { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin: 0; }
+    .admin-nav { padding: 1rem 0; }
+    .admin-nav a {
+      display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1.5rem;
+      color: rgba(255,255,255,0.6); font-size: 0.9rem; transition: var(--transition);
+    }
+    .admin-nav a:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+    .admin-nav a.active { background: var(--primary); color: var(--white); }
+    .admin-nav a .nav-icon { font-size: 1.1rem; width: 24px; text-align: center; }
+    .admin-main { padding: 2rem; }
+    .admin-header { margin-bottom: 2rem; }
+    .admin-header h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
+    .admin-header p { color: var(--gray-500); margin: 0; }
+    .admin-card {
+      background: var(--white); border-radius: var(--radius-md); padding: 1.5rem;
+      box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200); margin-bottom: 1.5rem;
+    }
+    .admin-card h3 { margin-bottom: 1rem; font-size: 1.1rem; }
+    .admin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .admin-stat {
+      background: var(--white); padding: 1.5rem; border-radius: var(--radius-md);
+      border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm);
+    }
+    .admin-stat .stat-value {
+      font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--primary);
+    }
+    .admin-stat .stat-label { font-size: 0.85rem; color: var(--gray-500); }
+    .admin-table { width: 100%; border-collapse: collapse; }
+    .admin-table th {
+      text-align: left; padding: 0.8rem; background: var(--gray-50);
+      font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600;
+      border-bottom: 2px solid var(--gray-200); color: var(--gray-700);
+    }
+    .admin-table td { padding: 0.8rem; border-bottom: 1px solid var(--gray-200); font-size: 0.9rem; }
+    .admin-table tr:hover td { background: var(--gray-50); }
+    .admin-badge {
+      display: inline-block; padding: 0.2rem 0.6rem; border-radius: 50px;
+      font-size: 0.75rem; font-weight: 600;
+    }
+    .admin-badge.success { background: #E8F5E9; color: #2E7D32; }
+    .admin-badge.info { background: #E3F2FD; color: #1565C0; }
+    .admin-badge.warning { background: #FFF3E0; color: #E65100; }
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+    .admin-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .admin-tab {
+      padding: 0.5rem 1.2rem; background: var(--gray-100); border: 1px solid var(--gray-200);
+      border-radius: 50px; cursor: pointer; font-size: 0.85rem; font-weight: 500;
+      font-family: var(--font-heading); transition: var(--transition);
+    }
+    .admin-tab.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
+    .image-preview { width: 100px; height: 100px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--gray-200); }
+    .upload-zone {
+      border: 2px dashed var(--gray-300); border-radius: var(--radius-md); padding: 2rem;
+      text-align: center; cursor: pointer; transition: var(--transition);
+    }
+    .upload-zone:hover { border-color: var(--primary); background: var(--off-white); }
+    .gallery-thumb {
+      width: 120px; height: 120px; object-fit: cover; border-radius: var(--radius-sm);
+      border: 1px solid var(--gray-200); cursor: pointer; transition: var(--transition);
+    }
+    .gallery-thumb:hover { border-color: var(--primary); transform: scale(1.05); }
+    .gallery-grid-admin { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1rem; }
+    .gallery-item-admin { position: relative; }
+    .gallery-item-admin .delete-btn {
+      position: absolute; top: 5px; right: 5px; width: 24px; height: 24px;
+      background: #E53935; color: var(--white); border: none; border-radius: var(--radius-full);
+      cursor: pointer; font-size: 0.7rem; display: flex; align-items: center; justify-content: center;
+    }
+    @media (max-width: 768px) {
+      .admin-layout { grid-template-columns: 1fr; }
+      .admin-sidebar {
+        position: fixed; left: -260px; width: 250px; z-index: 1000; transition: left 0.3s ease;
+      }
+      .admin-sidebar.open { left: 0; }
+      .mobile-toggle {
+        display: block; position: fixed; bottom: 1rem; right: 1rem; width: 50px; height: 50px;
+        background: var(--primary); color: var(--white); border: none; border-radius: var(--radius-full);
+        cursor: pointer; font-size: 1.3rem; z-index: 1001; box-shadow: var(--shadow-lg);
+      }
+    }
+    @media (min-width: 769px) {
+      .mobile-toggle { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="admin-sidebar-brand">
+        <h2>&#9829; My Body, My Care</h2>
+        <p>Admin Dashboard</p>
+      </div>
+      <nav class="admin-nav">
+        <a href="#" class="active" data-section="dashboard" onclick="showSection('dashboard', this)">
+          <span class="nav-icon">&#128200;</span> Dashboard
+        </a>
+        <a href="#" data-section="statistics" onclick="showSection('statistics', this)">
+          <span class="nav-icon">&#128202;</span> Statistics
+        </a>
+        <a href="#" data-section="news" onclick="showSection('news', this)">
+          <span class="nav-icon">&#128240;</span> News & Blog
+        </a>
+        <a href="#" data-section="gallery" onclick="showSection('gallery', this)">
+          <span class="nav-icon">&#128247;</span> Gallery
+        </a>
+        <a href="#" data-section="team" onclick="showSection('team', this)">
+          <span class="nav-icon">&#128101;</span> Team
+        </a>
+        <a href="#" data-section="messages" onclick="showSection('messages', this)">
+          <span class="nav-icon">&#128172;</span> Messages
+        </a>
+        <a href="#" data-section="export" onclick="showSection('export', this)">
+          <span class="nav-icon">&#128228;</span> Export Data
+        </a>
+        <a href="index.html" style="margin-top:2rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:1rem;">
+          <span class="nav-icon">&#127968;</span> View Website
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+
+      <!-- Mobile Toggle -->
+      <button class="mobile-toggle" onclick="toggleSidebar()">&#9776;</button>
+
+      <!-- Dashboard Section -->
+      <div class="admin-section active" id="section-dashboard">
+        <div class="admin-header">
+          <h1>Dashboard</h1>
+          <p>Welcome back! Here's an overview of your project.</p>
+        </div>
+
+        <div class="admin-stats" id="dashboardStats">
+          <div class="admin-stat">
+            <div class="stat-value" id="stat-girls">100</div>
+            <div class="stat-label">Girls Educated</div>
+          </div>
+          <div class="admin-stat">
+            <div class="stat-value" id="stat-kits">100</div>
+            <div class="stat-label">Kits Distributed</div>
+          </div>
+          <div class="admin-stat">
+            <div class="stat-value" id="stat-schools">3</div>
+            <div class="stat-label">Schools Visited</div>
+          </div>
+          <div class="admin-stat">
+            <div class="stat-value" id="stat-healthcare">3</div>
+            <div class="stat-label">Healthcare Pros</div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>Quick Actions</h3>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <button class="btn btn-primary btn-sm" onclick="showSection('news', document.querySelector('[data-section=news]'))">Add News Post</button>
+            <button class="btn btn-secondary btn-sm" onclick="showSection('gallery', document.querySelector('[data-section=gallery]'))">Upload Photos</button>
+            <button class="btn btn-outline btn-sm" onclick="showSection('statistics', document.querySelector('[data-section=statistics]'))">Update Statistics</button>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>Recent Messages</h3>
+          <div id="recentMessages">
+            <p style="color:var(--gray-500);font-size:0.9rem;">No messages yet. Messages submitted through the contact form will appear here.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statistics Section -->
+      <div class="admin-section" id="section-statistics">
+        <div class="admin-header">
+          <h1>Update Statistics</h1>
+          <p>Update the numbers displayed on your website.</p>
+        </div>
+        <div class="admin-card">
+          <h3>Project Statistics</h3>
+          <form id="statsForm" onsubmit="saveStats(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Girls Educated</label>
+                <input type="number" id="input-girls" value="100" min="0">
+              </div>
+              <div class="form-group">
+                <label>Kits Distributed</label>
+                <input type="number" id="input-kits" value="100" min="0">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Schools Visited</label>
+                <input type="number" id="input-schools" value="3" min="0">
+              </div>
+              <div class="form-group">
+                <label>Healthcare Professionals</label>
+                <input type="number" id="input-healthcare" value="3" min="0">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Statistics</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- News Section -->
+      <div class="admin-section" id="section-news">
+        <div class="admin-header">
+          <h1>News & Blog Posts</h1>
+          <p>Create and manage your news articles and blog posts.</p>
+        </div>
+        <div class="admin-card">
+          <h3>Add New Post</h3>
+          <form id="newsForm" onsubmit="addNewsPost(event)">
+            <div class="form-group">
+              <label>Post Title *</label>
+              <input type="text" id="news-title" required placeholder="Enter post title">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Category</label>
+                <select id="news-category">
+                  <option value="Milestone">Milestone</option>
+                  <option value="Event">Event</option>
+                  <option value="Update">Update</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="Announcement">Announcement</option>
+                  <option value="Community">Community</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Date</label>
+                <input type="date" id="news-date">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Post Content *</label>
+              <textarea id="news-content" rows="6" required placeholder="Write your blog post content here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Publish Post</button>
+          </form>
+        </div>
+        <div class="admin-card">
+          <h3>Published Posts</h3>
+          <div id="newsList">
+            <p style="color:var(--gray-500);font-size:0.9rem;">No posts published yet.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Section -->
+      <div class="admin-section" id="section-gallery">
+        <div class="admin-header">
+          <h1>Photo Gallery</h1>
+          <p>Upload and manage photos from your school visits and events.</p>
+        </div>
+        <div class="admin-card">
+          <h3>Upload New Photo</h3>
+          <form id="galleryForm" onsubmit="addGalleryPhoto(event)">
+            <div class="form-group">
+              <label>Photo *</label>
+              <input type="file" id="gallery-file" accept="image/*" required style="padding:0.5rem;">
+            </div>
+            <div class="form-group">
+              <label>Caption *</label>
+              <input type="text" id="gallery-caption" required placeholder="Describe the photo">
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="gallery-category">
+                <option value="education">Education Session</option>
+                <option value="distribution">Kit Distribution</option>
+                <option value="schools">School Visit</option>
+                <option value="community">Community</option>
+              </select>
+            </div>
+            <div id="galleryPreview" style="margin-bottom:1rem;display:none;">
+              <img id="galleryPreviewImg" style="max-width:200px;border-radius:var(--radius-sm);border:1px solid var(--gray-200);">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload Photo</button>
+          </form>
+        </div>
+        <div class="admin-card">
+          <h3>Uploaded Photos</h3>
+          <div class="gallery-grid-admin" id="galleryList">
+            <p style="color:var(--gray-500);font-size:0.9rem;grid-column:1/-1;">No photos uploaded yet.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Section -->
+      <div class="admin-section" id="section-team">
+        <div class="admin-header">
+          <h1>Manage Team</h1>
+          <p>Add or edit team member profiles.</p>
+        </div>
+        <div class="admin-card">
+          <h3>Add Team Member</h3>
+          <form id="teamForm" onsubmit="addTeamMember(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="team-name" required placeholder="Full name">
+              </div>
+              <div class="form-group">
+                <label>Role *</label>
+                <input type="text" id="team-role" required placeholder="e.g., Project Lead, Educator">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Bio</label>
+              <textarea id="team-bio" rows="3" placeholder="Short description about this person"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Photo</label>
+              <input type="file" id="team-photo" accept="image/*" style="padding:0.5rem;">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Team Member</button>
+          </form>
+        </div>
+        <div class="admin-card">
+          <h3>Current Team</h3>
+          <div id="teamList">
+            <p style="color:var(--gray-500);font-size:0.9rem;">No team members added yet.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Section -->
+      <div class="admin-section" id="section-messages">
+        <div class="admin-header">
+          <h1>Contact Messages</h1>
+          <p>Messages submitted through the contact form.</p>
+        </div>
+        <div class="admin-card">
+          <div id="messagesList">
+            <p style="color:var(--gray-500);font-size:0.9rem;">No messages yet.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export Section -->
+      <div class="admin-section" id="section-export">
+        <div class="admin-header">
+          <h1>Export Data</h1>
+          <p>Download your data as JSON files to update your website.</p>
+        </div>
+        <div class="admin-card">
+          <h3>Export All Data</h3>
+          <p style="color:var(--gray-700);font-size:0.9rem;margin-bottom:1.5rem;">
+            Download all your content as a JSON file. You can then place this file in the <code>data/</code> folder of your website to update the content on your live site.
+          </p>
+          <button class="btn btn-primary" onclick="exportData()">&#128228; Download All Data (JSON)</button>
+        </div>
+        <div class="admin-card">
+          <h3>Import Data</h3>
+          <p style="color:var(--gray-700);font-size:0.9rem;margin-bottom:1.5rem;">
+            Import a previously exported JSON file to restore your data.
+          </p>
+          <input type="file" id="importFile" accept=".json" style="margin-bottom:1rem;padding:0.5rem;">
+          <br>
+          <button class="btn btn-secondary" onclick="importData()">Import Data</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

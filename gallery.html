@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photo gallery from My Body, My Care school visits, education sessions, and hygiene kit distributions.">
+  <title>Gallery | My Body, My Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand"><span class="brand-icon">&#9829;</span> My Body, My Care</a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="mission.html">Mission</a>
+        <a href="impact.html">Impact</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="resources.html">Resources</a>
+        <a href="news.html">News</a>
+        <a href="team.html">Team</a>
+        <a href="partners.html">Partners</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="nav-cta">Contact Us</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="menu-overlay" id="menuOverlay"></div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Photo Gallery</h1>
+      <p>Moments from our school visits, education sessions, and community impact.</p>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator">/</span>
+        <span class="current">Gallery</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Filter -->
+  <section class="py-section">
+    <div class="container">
+      <div class="tabs" id="galleryTabs">
+        <button class="tab-btn active" data-filter="all">All Photos</button>
+        <button class="tab-btn" data-filter="education">Education Sessions</button>
+        <button class="tab-btn" data-filter="distribution">Kit Distribution</button>
+        <button class="tab-btn" data-filter="schools">School Visits</button>
+        <button class="tab-btn" data-filter="community">Community</button>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item fade-up" data-category="education">
+          <div class="placeholder-img">&#128218;</div>
+          <div class="gallery-overlay">
+            <h4>Menstrual Health Education</h4>
+            <p>Interactive session with students on menstrual cycle basics</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-up" data-category="distribution">
+          <div class="placeholder-img">&#127873;</div>
+          <div class="gallery-overlay">
+            <h4>Hygiene Kit Distribution</h4>
+            <p>Providing girls with essential hygiene products</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-up" data-category="schools">
+          <div class="placeholder-img">&#127979;</div>
+          <div class="gallery-overlay">
+            <h4>Community Secondary School Visit</h4>
+            <p>Our first school visit in rural Ile-Ife</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-up" data-category="education">
+          <div class="placeholder-img">&#128105;</div>
+          <div class="gallery-overlay">
+            <h4>Healthcare Professional Session</h4>
+            <p>Led by qualified healthcare workers</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-up" data-category="community">
+          <div class="placeholder-img">&#129309;</div>
+          <div class="gallery-overlay">
+            <h4>Community Engagement</h4>
+            <p>Building trust with community leaders</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-up" data-category="distribution">
+          <div class="placeholder-img">&#127890;</div>
+          <div class="gallery-overlay">
+            <h4>Kit Assembly</h4>
+            <p>Preparing hygiene kits for distribution</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-up" data-category="schools">
+          <div class="placeholder-img">&#127891;</div>
+          <div class="gallery-overlay">
+            <h4>Second School Visit</h4>
+            <p>Expanding our reach to more schools</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-up" data-category="education">
+          <div class="placeholder-img">&#128172;</div>
+          <div class="gallery-overlay">
+            <h4>Q&A Session</h4>
+            <p>Girls asking questions in a safe environment</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-up" data-category="distribution">
+          <div class="placeholder-img">&#10024;</div>
+          <div class="gallery-overlay">
+            <h4>Happy Recipients</h4>
+            <p>Girls celebrating receiving their hygiene kits</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-up" data-category="community">
+          <div class="placeholder-img">&#127793;</div>
+          <div class="gallery-overlay">
+            <h4>Growing Together</h4>
+            <p>Building a healthier future for our community</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-up" data-category="schools">
+          <div class="placeholder-img">&#128205;</div>
+          <div class="gallery-overlay">
+            <h4>Third School Visit</h4>
+            <p>Reaching 100 girls milestone</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-up" data-category="education">
+          <div class="placeholder-img">&#129657;</div>
+          <div class="gallery-overlay">
+            <h4>Hygiene Best Practices</h4>
+            <p>Teaching proper intimate hygiene techniques</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Note -->
+  <section class="py-sm bg-pink">
+    <div class="container text-center">
+      <p style="font-size:1rem;color:var(--gray-700);max-width:600px;margin:0 auto;">
+        <strong>Note:</strong> Placeholder images are shown above. Real photos from school visits and education sessions will be uploaded by the project team through the admin dashboard.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="fade-up">See Our Work in Person</h2>
+      <p class="fade-up">Want to witness our impact? Partner with us or invite us to your school or organization.</p>
+      <div class="cta-buttons fade-up">
+        <a href="partners.html" class="btn btn-white btn-lg">Partner With Us</a>
+        <a href="contact.html" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.5);color:#fff;">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand"><span class="brand-icon">&#9829;</span> My Body, My Care</div>
+          <p>A youth-led initiative providing menstrual health education and intimate hygiene awareness to adolescent girls in rural Ile-Ife, Nigeria.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">&#102;</a>
+            <a href="#" aria-label="Twitter">&#120143;</a>
+            <a href="#" aria-label="Instagram">&#9679;</a>
+            <a href="#" aria-label="WhatsApp">&#9742;</a>
+          </div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="mission.html">Our Mission</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="news.html">News & Updates</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get Involved</h4>
+          <ul class="footer-links">
+            <li><a href="partners.html">Partner With Us</a></li>
+            <li><a href="team.html">Meet the Team</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Stay Updated</h4>
+          <p>Subscribe to our newsletter for the latest news and updates.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault();alert('Thank you for subscribing!');">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 My Body, My Care. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
+  <script src="js/main.js"></script>
+</body>
+</html>
