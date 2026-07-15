@@ -218,7 +218,7 @@ p {
 }
 
 .navbar.scrolled {
-  background: var(--white);
+  background: var(--primary-dark);
   box-shadow: var(--shadow-md);
   padding: 0.6rem 0;
 }
@@ -282,7 +282,11 @@ p {
 }
 
 .navbar.scrolled .nav-links a {
-  color: var(--gray-700);
+  color: var(--white);
+}
+
+.navbar.scrolled .navbar-brand {
+  color: var(--white);
 }
 
 .nav-links a:hover,
@@ -293,21 +297,31 @@ p {
 
 .navbar.scrolled .nav-links a:hover,
 .navbar.scrolled .nav-links a.active {
-  background: var(--primary-light);
-  color: var(--primary);
+  background: rgba(255,255,255,0.15);
+  color: var(--white);
 }
 
 .nav-cta {
-  background: var(--primary) !important;
-  color: var(--white) !important;
+  background: var(--white) !important;
+  color: var(--primary-dark) !important;
   padding: 0.5rem 1.5rem !important;
   border-radius: 50px !important;
   white-space: nowrap !important;
+  font-weight: 600 !important;
 }
 
 .nav-cta:hover {
-  background: var(--primary-dark) !important;
+  background: rgba(255,255,255,0.85) !important;
   transform: translateY(-1px);
+}
+
+.navbar.scrolled .nav-cta {
+  background: var(--white) !important;
+  color: var(--primary-dark) !important;
+}
+
+.navbar.scrolled .nav-cta:hover {
+  background: rgba(255,255,255,0.85) !important;
 }
 
 /* Mobile Menu Toggle */
@@ -330,7 +344,7 @@ p {
 }
 
 .navbar.scrolled .menu-toggle span {
-  background: var(--gray-900);
+  background: var(--white);
 }
 
 /* ---------- Hero Section ---------- */
