@@ -7,8 +7,20 @@
   <title>Partner With Us | My Body, My Care</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Oswald:wght@700&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .yef-section { background: linear-gradient(135deg, #1769bf 0%, #903f98 100%); color: #fff; }
+    .yef-section .section-badge { background: rgba(255,255,255,0.2); color: #fff; }
+    .yef-section h2 { color: #fff; }
+    .yef-section .section-subtitle { color: rgba(255,255,255,0.9); }
+    .yef-heading { font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+    .yef-colours { display: flex; gap: 0.5rem; margin-top: 1.5rem; }
+    .yef-colour-dot { width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.5); }
+    .yef-logos { display: flex; align-items: center; gap: 2rem; background: rgba(255,255,255,0.1); border-radius: var(--radius); padding: 1.5rem 2rem; }
+    .yef-logos img { max-height: 60px; width: auto; }
+    .yef-tag { font-family: 'Noto Sans', sans-serif; font-size: 0.8rem; background: #ffcd03; color: #1769bf; padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 700; display: inline-block; margin-top: 1rem; }
+  </style>
 </head>
 <body>
 
@@ -46,26 +58,37 @@
   </section>
 
   <!-- Founding Partner -->
-  <section class="py-section bg-pink">
+  <section class="py-section yef-section">
     <div class="container">
       <div class="section-header fade-up">
         <span class="section-badge">Our Founding Partner</span>
-        <h2 class="section-title">Youth Empowerment Fund</h2>
+        <h2 class="section-title yef-heading">Youth Empowerment Fund</h2>
         <p class="section-subtitle">My Body, My Care is proudly funded through the Youth Empowerment Fund &mdash; a partnership between the European Union and the Global Youth Mobilization.</p>
       </div>
-      <div class="about-grid" style="max-width:900px;margin:0 auto;">
+      <div class="about-grid" style="max-width:950px;margin:0 auto;">
         <div class="about-content fade-up">
-          <p>The <strong>Youth Empowerment Fund</strong> provides direct financial support for youth-led initiatives focusing on the implementation of the Sustainable Development Goals at the local level. It is a flagship initiative of the EU's Youth Action Plan, designed by, with and for young people.</p>
-          <p>Since its inception, the Youth Empowerment Fund has invested more than US$5 million to support over 640 youth-led projects, engaging more than 600,000 young people and reaching over 3.6 million people across more than 125 countries.</p>
-          <p>The Fund is delivered through the <strong>Global Youth Mobilization (GYM)</strong>, an initiative of the Big Six Youth Organizations &mdash; the world's largest youth-serving organizations, involving more than 250 million young people globally.</p>
+          <p style="color:rgba(255,255,255,0.95);">The <strong>Youth Empowerment Fund</strong> provides direct financial support for youth-led initiatives focusing on the implementation of the Sustainable Development Goals at the local level. It is a flagship initiative of the EU's Youth Action Plan, designed by, with and for young people.</p>
+          <p style="color:rgba(255,255,255,0.95);">Since its inception, the Youth Empowerment Fund has invested more than US$5 million to support over 640 youth-led projects, engaging more than 600,000 young people and reaching over 3.6 million people across more than 125 countries.</p>
+          <p style="color:rgba(255,255,255,0.95);">The Fund is delivered through the <strong>Global Youth Mobilization (GYM)</strong>, an initiative of the Big Six Youth Organizations &mdash; the world's largest youth-serving organizations, involving more than 250 million young people globally.</p>
+          <div class="yef-colours">
+            <div class="yef-colour-dot" style="background:#f04e37;"></div>
+            <div class="yef-colour-dot" style="background:#ffcd03;"></div>
+            <div class="yef-colour-dot" style="background:#ff9700;"></div>
+            <div class="yef-colour-dot" style="background:#903f98;"></div>
+            <div class="yef-colour-dot" style="background:#18baa8;"></div>
+            <div class="yef-colour-dot" style="background:#1769bf;"></div>
+          </div>
         </div>
         <div class="about-image fade-up" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;">
-          <img src="images/eu-emblem.png" alt="Funded by the European Union" style="max-width:180px;height:auto;">
-          <img src="images/gym-logo.png" alt="Global Youth Mobilization Logo" style="max-width:200px;height:auto;">
+          <div class="yef-logos">
+            <img src="images/eu-emblem.png" alt="Funded by the European Union">
+            <img src="images/gym-logo.png" alt="Global Youth Mobilization Logo">
+          </div>
+          <span class="yef-tag">#YouthEmpowermentFund</span>
         </div>
       </div>
       <div class="text-center mt-3 fade-up">
-        <a href="https://globalyouthmobilization.org" target="_blank" class="btn btn-primary">Visit Global Youth Mobilization &#8594;</a>
+        <a href="https://globalyouthmobilization.org" target="_blank" class="btn btn-white">Visit Global Youth Mobilization &#8594;</a>
       </div>
     </div>
   </section>
