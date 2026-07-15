@@ -406,6 +406,25 @@ p {
   border: 1px solid rgba(255,255,255,0.2);
 }
 
+.hero-badge-floating {
+  position: absolute;
+  right: 6%;
+  bottom: 18%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.25);
+  z-index: 2;
+  white-space: nowrap;
+}
+
 .hero h1 {
   color: var(--white);
   margin-bottom: 1.5rem;
