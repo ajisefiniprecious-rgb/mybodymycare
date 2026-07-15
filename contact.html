@@ -98,7 +98,7 @@
 
         <!-- Contact Form -->
         <div class="fade-up">
-          <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+          <form class="contact-form" id="contactForm" action="https://formspree.io/f/mojgjegl" method="POST" onsubmit="handleContactSubmit(event)">
             <h3 style="margin-bottom:0.3rem;">Send Us a Message</h3>
             <p style="font-size:0.9rem;color:var(--gray-500);margin-bottom:1.5rem;">Fill out the form below and we'll get back to you as soon as possible.</p>
 
@@ -239,22 +239,33 @@
       e.preventDefault();
       const form = e.target;
       const isAnonymous = document.getElementById('anonymousToggle').checked;
-      const data = {
-        firstName: isAnonymous ? 'Anonymous' : form.firstName.value,
-        lastName: isAnonymous ? '' : form.lastName.value,
-        email: isAnonymous ? '' : form.email.value,
-        phone: isAnonymous ? '' : form.phone.value,
-        organization: isAnonymous ? '' : form.organization.value,
-        subject: form.subject.value,
-        message: form.message.value,
-        anonymous: isAnonymous,
-        date: new Date().toISOString()
-      };
-      const messages = JSON.parse(localStorage.getItem('mbmc_messages') || '[]');
-      messages.push(data);
-      localStorage.setItem('mbmc_messages', JSON.stringify(messages));
-      form.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
+      const data = new FormData(form);
+      if (isAnonymous) {
+        data.set('firstName', 'Anonymous');
+        data.set('lastName', '');
+        data.set('email', '');
+        data.set('phone', '');
+        data.set('organization', '');
+        data.set('anonymous', 'Yes');
+      } else {
+        data.set('anonymous', 'No');
+      }
+      data.set('_subject', 'New Message from My Body My Care Website');
+
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } else {
+          alert('Something went wrong. Please try again or contact us directly.');
+        }
+      }).catch(function() {
+        alert('Something went wrong. Please try again or contact us directly.');
+      });
     }
 
     function resetForm() {
