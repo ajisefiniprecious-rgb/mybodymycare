@@ -236,7 +236,7 @@ p {
   font-family: var(--font-heading);
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--secondary);
   line-height: 1.1;
 }
 
@@ -1379,6 +1379,7 @@ p {
   font-weight: 700;
   margin-bottom: 1rem;
   line-height: 1.1;
+  color: var(--secondary);
 }
 
 .footer-brand .brand-text {
