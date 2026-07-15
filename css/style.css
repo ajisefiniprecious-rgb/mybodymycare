@@ -409,19 +409,21 @@ p {
 
 .hero-badge-floating {
   position: absolute;
-  right: 6%;
-  bottom: 18%;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.6rem 1.2rem;
   background: rgba(255,255,255,0.12);
   backdrop-filter: blur(10px);
-  border-radius: 50px;
+  border-radius: 50px 0 0 50px;
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--white);
   border: 1px solid rgba(255,255,255,0.25);
+  border-right: none;
   z-index: 2;
   white-space: nowrap;
 }
@@ -1741,6 +1743,16 @@ p {
     justify-content: center;
   }
 
+  .hero-badge-floating {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.25);
+    margin-bottom: 1.5rem;
+  }
+
   .hero-visual {
     display: none;
   }
@@ -1855,6 +1867,11 @@ p {
 @media (max-width: 480px) {
   .hero h1 {
     font-size: 1.8rem;
+  }
+
+  .hero-badge-floating {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.9rem;
   }
 
   .hero-buttons {
