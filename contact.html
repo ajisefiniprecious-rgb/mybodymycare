@@ -102,30 +102,32 @@
             <h3 style="margin-bottom:0.3rem;">Send Us a Message</h3>
             <p style="font-size:0.9rem;color:var(--gray-500);margin-bottom:1.5rem;">Fill out the form below and we'll get back to you as soon as possible.</p>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="firstName">First Name *</label>
-                <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+            <div id="personalFields">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name *</label>
+                  <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name *</label>
+                  <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                </div>
               </div>
+
               <div class="form-group">
-                <label for="lastName">Last Name *</label>
-                <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email address">
               </div>
-            </div>
 
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email" required placeholder="Enter your email address">
-            </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+              </div>
 
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
-            </div>
-
-            <div class="form-group">
-              <label for="organization">Organization (if applicable)</label>
-              <input type="text" id="organization" name="organization" placeholder="School, NGO, company, etc.">
+              <div class="form-group">
+                <label for="organization">Organization (if applicable)</label>
+                <input type="text" id="organization" name="organization" placeholder="School, NGO, company, etc.">
+              </div>
             </div>
 
             <div class="form-group">
@@ -145,6 +147,11 @@
             <div class="form-group">
               <label for="message">Your Message *</label>
               <textarea id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+            </div>
+
+            <div class="form-group" style="display:flex;align-items:center;gap:0.8rem;padding:1rem;background:var(--gray-50);border-radius:var(--radius);border:1px solid var(--gray-200);">
+              <input type="checkbox" id="anonymousToggle" name="anonymous" style="width:18px;height:18px;accent-color:var(--primary);" onchange="toggleAnonymous()">
+              <label for="anonymousToggle" style="margin:0;font-size:0.9rem;cursor:pointer;"><strong>Send anonymously</strong> &mdash; your name and contact details will not be collected</label>
             </div>
 
             <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Send Message &#8594;</button>
@@ -214,5 +221,51 @@
 
   <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
   <script src="js/main.js"></script>
+  <script>
+    function toggleAnonymous() {
+      const checked = document.getElementById('anonymousToggle').checked;
+      const fields = document.getElementById('personalFields');
+      const inputs = fields.querySelectorAll('input[required]');
+      if (checked) {
+        fields.style.display = 'none';
+        inputs.forEach(i => i.removeAttribute('required'));
+      } else {
+        fields.style.display = 'block';
+        inputs.forEach(i => i.setAttribute('required', ''));
+      }
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const isAnonymous = document.getElementById('anonymousToggle').checked;
+      const data = {
+        firstName: isAnonymous ? 'Anonymous' : form.firstName.value,
+        lastName: isAnonymous ? '' : form.lastName.value,
+        email: isAnonymous ? '' : form.email.value,
+        phone: isAnonymous ? '' : form.phone.value,
+        organization: isAnonymous ? '' : form.organization.value,
+        subject: form.subject.value,
+        message: form.message.value,
+        anonymous: isAnonymous,
+        date: new Date().toISOString()
+      };
+      const messages = JSON.parse(localStorage.getItem('mbmc_messages') || '[]');
+      messages.push(data);
+      localStorage.setItem('mbmc_messages', JSON.stringify(messages));
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }
+
+    function resetForm() {
+      const form = document.getElementById('contactForm');
+      form.reset();
+      form.style.display = 'block';
+      document.getElementById('formSuccess').style.display = 'none';
+      document.getElementById('personalFields').style.display = 'block';
+      const inputs = document.getElementById('personalFields').querySelectorAll('input[required]');
+      inputs.forEach(i => i.setAttribute('required', ''));
+    }
+  </script>
 </body>
 </html>
