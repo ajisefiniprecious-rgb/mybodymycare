@@ -1741,6 +1741,17 @@ p {
     justify-content: center;
   }
 
+  .hero-badge-floating {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    border-radius: 50px;
+    margin: 0 auto 1.5rem;
+    display: inline-flex;
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
   .hero-visual {
     display: none;
   }
