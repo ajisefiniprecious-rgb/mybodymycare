@@ -193,26 +193,41 @@ document.addEventListener('DOMContentLoaded', function () {
   window.handleContactSubmit = function (e) {
     e.preventDefault();
 
-    var formData = {
-      firstName: document.getElementById('firstName').value,
-      lastName: document.getElementById('lastName').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone') ? document.getElementById('phone').value : '',
-      organization: document.getElementById('organization') ? document.getElementById('organization').value : '',
-      subject: document.getElementById('subject').value,
-      message: document.getElementById('message').value,
-      date: new Date().toISOString(),
-      read: false
-    };
+    var form = document.getElementById('contactForm');
+    var formData = new FormData(form);
 
-    // Save to localStorage
-    var messages = JSON.parse(localStorage.getItem('mbmc_messages') || '[]');
-    messages.unshift(formData);
-    localStorage.setItem('mbmc_messages', JSON.stringify(messages));
+    // Submit to Formspree
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(function (response) {
+      if (response.ok) {
+        // Save to localStorage as backup
+        var msg = {
+          firstName: document.getElementById('firstName').value,
+          lastName: document.getElementById('lastName').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone') ? document.getElementById('phone').value : '',
+          organization: document.getElementById('organization') ? document.getElementById('organization').value : '',
+          subject: document.getElementById('subject').value,
+          message: document.getElementById('message').value,
+          date: new Date().toISOString(),
+          read: false
+        };
+        var messages = JSON.parse(localStorage.getItem('mbmc_messages') || '[]');
+        messages.unshift(msg);
+        localStorage.setItem('mbmc_messages', JSON.stringify(messages));
 
-    // Show success
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
+        // Show success
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again or contact us directly.');
+      }
+    }).catch(function () {
+      alert('Network error. Please check your connection and try again.');
+    });
   };
 
   window.resetForm = function () {
