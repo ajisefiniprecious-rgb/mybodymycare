@@ -277,6 +277,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+// ========== News Read More Toggle ==========
+function togglePost(btn) {
+  var card = btn.closest('.blog-card');
+  var full = card.querySelector('.blog-full');
+  if (!full) return;
+  full.classList.toggle('open');
+  btn.innerHTML = full.classList.contains('open') ? 'Show Less &#8592;' : 'Read More &#8594;';
+  btn.classList.toggle('expanded', full.classList.contains('open'));
+}
+
 // ========== Load Content from localStorage ==========
 function loadDynamicContent() {
   // Load statistics
