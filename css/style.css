@@ -1259,15 +1259,14 @@ p {
 }
 
 .blog-full {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, margin 0.3s ease;
+  display: none;
   margin-top: 0;
 }
 
 .blog-full.open {
-  max-height: 600px;
+  display: block;
   margin-top: 1rem;
+  animation: fadeIn 0.3s ease;
 }
 
 .blog-full p {
