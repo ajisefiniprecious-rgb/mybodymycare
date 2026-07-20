@@ -1008,8 +1008,8 @@ p {
 
 .team-avatar {
   width: 120px;
-  height: 120px;
-  border-radius: var(--radius-full);
+  height: 140px;
+  border-radius: 16px;
   margin: 0 auto 1.2rem;
   display: flex;
   align-items: center;
@@ -1018,6 +1018,11 @@ p {
   font-family: var(--font-heading);
   font-weight: 700;
   color: var(--white);
+  overflow: hidden;
+}
+
+.team-avatar img {
+  object-position: top;
 }
 
 .team-avatar.pink { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
